@@ -11,6 +11,23 @@
     <main class="container-fluid">
       <h1>LBX Viewer</h1>
       <div
+        id="drop-zone"
+        style="
+          border: 2px dashed var(--pico-muted-border-color);
+          border-radius: var(--pico-border-radius);
+          text-align: center;
+          cursor: pointer;
+          margin-bottom: 0.5rem;
+        "
+        class="pico-background-slate-900"
+      >
+        <p>
+          Drag & drop your lbx <strong>.log</strong> file here, or
+          <u>click to browse</u>
+        </p>
+        <input type="file" id="file-input" style="display: none" />
+      </div>
+      <div
         class="pico-background-slate-900"
         style="
           display: grid;
@@ -21,151 +38,173 @@
       >
         <aside
           class="pico-background-slate-850"
-          style="padding: var(--pico-spacing); height: 80vh; overflow-y: auto"
+          style="padding: var(--pico-spacing); height: 80vh; overflow-y: scroll"
         >
-          <h5>Stats</h5>
-          <label for="cpu">
-            <input id="cpu" type="checkbox" />
-            CPU %
-          </label>
-          <label for="rss">
-            <input id="rss" type="checkbox" />
-            RSS
-          </label>
-          <label for="vm-peak">
-            <input id="vm-peak" type="checkbox" />
-            VM Peak
-          </label>
-          <label for="vm-swap">
-            <input id="vm-swap" type="checkbox" />
-            VM Swap
-          </label>
-          <label for="vm-shared">
-            <input id="vm-shared" type="checkbox" />
-            VM Shared
-          </label>
-          <label for="vm-size">
-            <input id="vm-size" type="checkbox" />
-            VM Size
-          </label>
-          <label for="threads">
-            <input id="threads" type="checkbox" />
-            Threads
-          </label>
-          <label for="processorN">
-            <input id="processorN" type="checkbox" />
-            Processor #
-          </label>
-          <label for="priority">
-            <input id="priority" type="checkbox" />
-            Priority
-          </label>
-          <label for="state">
-            <input id="state" type="checkbox" />
-            State
-          </label>
-          <label for="system-time">
-            <input id="system-time" type="checkbox" />
-            System Time
-          </label>
-          <label for="user-time">
-            <input id="user-time" type="checkbox" />
-            User Time
-          </label>
-          <label for="nice">
-            <input id="nice" type="checkbox" />
-            Nice
-          </label>
-          <label for="start-time">
-            <input id="start-time" type="checkbox" />
-            Start Time
-          </label>
-          <label for="fd-alloc">
-            <input id="fd-alloc" type="checkbox" />
-            FDs Allocated
-          </label>
-          <label for="successful-bytes-read">
-            <input id="successful-bytes-read" type="checkbox" />
-            Successful Bytes Read
-          </label>
-          <label for="successful-bytes-written">
-            <input id="successful-bytes-written" type="checkbox" />
-            Successful Bytes Written
-          </label>
-          <label for="number-file-read-calls">
-            <input id="number-file-read-calls" type="checkbox" />
-            Number of 'File Read' Syscalls
-          </label>
-          <label for="number-file-write-calls">
-            <input id="number-file-write-calls" type="checkbox" />
-            Number of 'File Write' Syscalls
-          </label>
-          <label for="number-bytes-really-fetched">
-            <input id="number-bytes-really-fetched" type="checkbox" />
-            Bytes Really Fetched From Storage
-          </label>
-          <label for="number-bytes-really-written">
-            <input id="number-bytes-really-written" type="checkbox" />
-            Bytes Really Written To Storage
-          </label>
-          <label for="cancelled-write-bytes">
-            <input id="cancelled-write-bytes" type="checkbox" />
-            Cancelled Write Bytes
-          </label>
-          <label for="files-open">
-            <input id="files-open" type="checkbox" />
-            Files Open
-          </label>
-          <label for="voluntary-context-switches">
-            <input id="voluntary-context-switches" type="checkbox" />
-            Voluntary Context Switches
-          </label>
-          <label for="non-voluntary-context-switches">
-            <input id="non-voluntary-context-switches" type="checkbox" />
-            Non-Voluntary Context Switches
-          </label>
-          <label for="signals-queued-and-limit">
-            <input id="signals-queued-and-limit" type="checkbox" />
-            Signals Queued/Limit
-          </label>
-          <label for="signals-pending-thread">
-            <input id="signals-pending-thread" type="checkbox" />
-            Signals Pending Thread
-          </label>
-          <label for="signals-pending-process">
-            <input id="signals-pending-process" type="checkbox" />
-            Signals Pending Process
-          </label>
-          <label for="signals-blocked">
-            <input id="signals-blocked" type="checkbox" />
-            Signals Blocked
-          </label>
-          <label for="signals-ignored">
-            <input id="signals-ignored" type="checkbox" />
-            Signals Ignored
-          </label>
-          <label for="signals-caught">
-            <input id="signals-caught" type="checkbox" />
-            Signals Caught
-          </label>
+          <h3>Metrics</h3>
+
+          <div style="margin-bottom: 3rem; margin-left: 0.5rem;">
+            <h4>Performance</h4>
+            <label for="cpu">
+              <input id="cpu" type="checkbox" />
+              CPU %
+            </label>
+            <label for="rss">
+              <input id="rss" type="checkbox" />
+              RSS
+            </label>
+            <label for="vm-peak">
+              <input id="vm-peak" type="checkbox" />
+              VM Peak
+            </label>
+            <label for="vm-swap">
+              <input id="vm-swap" type="checkbox" />
+              VM Swap
+            </label>
+            <label for="vm-shared">
+              <input id="vm-shared" type="checkbox" />
+              VM Shared
+            </label>
+            <label for="vm-size">
+              <input id="vm-size" type="checkbox" />
+              VM Size
+            </label>
+            <label for="threads">
+              <input id="threads" type="checkbox" />
+              Threads
+            </label>
+          </div>
+          <div style="margin-bottom: 3rem; margin-left: 0.5rem;">
+            <h4>CPU</h4>
+            <label for="system-time">
+              <input id="system-time" type="checkbox" />
+              System Time
+            </label>
+            <label for="user-time">
+              <input id="user-time" type="checkbox" />
+              User Time
+            </label>
+            <label for="voluntary-context-switches">
+              <input id="voluntary-context-switches" type="checkbox" />
+              Voluntary Context Switches
+            </label>
+            <label for="non-voluntary-context-switches">
+              <input id="non-voluntary-context-switches" type="checkbox" />
+              Non-Voluntary Context Switches
+            </label>
+            <label for="start-time">
+              <input id="start-time" type="checkbox" />
+              Start Time
+            </label>
+          </div>
+          <div style="margin-bottom: 3rem; margin-left: 0.5rem;">
+            <h4>IO</h4>
+            <label for="fd-alloc">
+              <input id="fd-alloc" type="checkbox" />
+              FDs Allocated
+            </label>
+            <label for="successful-bytes-read">
+              <input id="successful-bytes-read" type="checkbox" />
+              Successful Bytes Read
+            </label>
+            <label for="successful-bytes-written">
+              <input id="successful-bytes-written" type="checkbox" />
+              Successful Bytes Written
+            </label>
+            <label for="number-file-read-calls">
+              <input id="number-file-read-calls" type="checkbox" />
+              Number of 'File Read' Syscalls
+            </label>
+            <label for="number-file-write-calls">
+              <input id="number-file-write-calls" type="checkbox" />
+              Number of 'File Write' Syscalls
+            </label>
+            <label for="number-bytes-really-fetched">
+              <input id="number-bytes-really-fetched" type="checkbox" />
+              Bytes Really Fetched From Storage
+            </label>
+            <label for="number-bytes-really-written">
+              <input id="number-bytes-really-written" type="checkbox" />
+              Bytes Really Written To Storage
+            </label>
+            <label for="cancelled-write-bytes">
+              <input id="cancelled-write-bytes" type="checkbox" />
+              Cancelled Write Bytes
+            </label>
+            <label for="files-open">
+              <input id="files-open" type="checkbox" />
+              Files Open
+            </label>
+          </div>
+          <div style="margin-bottom: 3rem; margin-left: 0.5rem;">
+            <h4>Process</h4>
+            <label for="processorN">
+              <input id="processorN" type="checkbox" />
+              Processor #
+            </label>
+            <label for="priority">
+              <input id="priority" type="checkbox" />
+              Priority
+            </label>
+            <label for="state">
+              <input id="state" type="checkbox" />
+              State
+            </label>
+            <label for="nice">
+              <input id="nice" type="checkbox" />
+              Nice
+            </label>
+          </div>
+          <div style="margin-bottom: 3rem; margin-left: 0.5rem;">
+            <h4>Signals</h4>
+            <label for="signals-queued-and-limit">
+              <input id="signals-queued-and-limit" type="checkbox" />
+              Signals Queued/Limit
+            </label>
+            <label for="signals-pending-thread">
+              <input id="signals-pending-thread" type="checkbox" />
+              Signals Pending Thread
+            </label>
+            <label for="signals-pending-process">
+              <input id="signals-pending-process" type="checkbox" />
+              Signals Pending Process
+            </label>
+            <label for="signals-blocked">
+              <input id="signals-blocked" type="checkbox" />
+              Signals Blocked
+            </label>
+            <label for="signals-ignored">
+              <input id="signals-ignored" type="checkbox" />
+              Signals Ignored
+            </label>
+            <label for="signals-caught">
+              <input id="signals-caught" type="checkbox" />
+              Signals Caught
+            </label>
+          </div>
         </aside>
 
         <aside
           class="pico-background-slate-850"
           style="padding: var(--pico-spacing)"
         >
-          <h5>Timeline</h5>
+          <h3>Timeline</h3>
         </aside>
 
         <aside
           class="pico-background-slate-850"
           style="padding: var(--pico-spacing)"
         >
-          <h5>Details</h5>
+          <h3>Details</h3>
         </aside>
       </div>
     </main>
 
+    <style>
+      ::-webkit-scrollbar {
+        width: 8px;
+        background-color: var(--pico-background-color);
+      }
+    </style>
     <script src="build/index.js"></script>
   </body>
 </html>
