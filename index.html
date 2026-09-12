@@ -38,11 +38,16 @@
       >
         <aside
           class="pico-background-slate-850"
-          style="padding: var(--pico-spacing); height: 80vh; overflow-y: scroll"
+          style="
+            padding: var(--pico-spacing);
+            height: 80vh;
+            overflow-y: scroll;
+            border-radius: 0.5%;
+          "
         >
           <h3>Metrics</h3>
 
-          <div style="margin-bottom: 3rem; margin-left: 0.5rem;">
+          <div style="margin-bottom: 3rem; margin-left: 0.5rem">
             <h4>Performance</h4>
             <label for="cpu">
               <input id="cpu" type="checkbox" />
@@ -73,7 +78,7 @@
               Threads
             </label>
           </div>
-          <div style="margin-bottom: 3rem; margin-left: 0.5rem;">
+          <div style="margin-bottom: 3rem; margin-left: 0.5rem">
             <h4>CPU</h4>
             <label for="system-time">
               <input id="system-time" type="checkbox" />
@@ -96,7 +101,7 @@
               Start Time
             </label>
           </div>
-          <div style="margin-bottom: 3rem; margin-left: 0.5rem;">
+          <div style="margin-bottom: 3rem; margin-left: 0.5rem">
             <h4>IO</h4>
             <label for="fd-alloc">
               <input id="fd-alloc" type="checkbox" />
@@ -135,7 +140,7 @@
               Files Open
             </label>
           </div>
-          <div style="margin-bottom: 3rem; margin-left: 0.5rem;">
+          <div style="margin-bottom: 3rem; margin-left: 0.5rem">
             <h4>Process</h4>
             <label for="processorN">
               <input id="processorN" type="checkbox" />
@@ -154,7 +159,7 @@
               Nice
             </label>
           </div>
-          <div style="margin-bottom: 3rem; margin-left: 0.5rem;">
+          <div style="margin-bottom: 3rem; margin-left: 0.5rem">
             <h4>Signals</h4>
             <label for="signals-queued-and-limit">
               <input id="signals-queued-and-limit" type="checkbox" />
@@ -185,14 +190,14 @@
 
         <aside
           class="pico-background-slate-850"
-          style="padding: var(--pico-spacing)"
+          style="padding: var(--pico-spacing); border-radius: 0.5%"
         >
           <h3>Timeline</h3>
         </aside>
 
         <aside
           class="pico-background-slate-850"
-          style="padding: var(--pico-spacing)"
+          style="padding: var(--pico-spacing); border-radius: 0.5%;"
         >
           <h3>Details</h3>
         </aside>
