@@ -1,0 +1,17 @@
+{
+  "name": "lbx_viewer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "Georgi Panayotov",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "typescript": "^7.0.2"
+  },
+  "dependencies": {
+    "highcharts": "^13.0.2"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "rootDir": "./ts",
+    "outDir": "./build",
+    "target": "es2020",
+    "strict": true
+  },
+  "include": ["**/*.ts"]
+}
