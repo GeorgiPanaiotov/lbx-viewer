@@ -192,7 +192,10 @@
           class="pico-background-slate-850"
           style="padding: var(--pico-spacing); border-radius: 0.5%"
         >
+        <div style="display: grid; grid-template-rows: auto;"></div>
           <h3>Timeline</h3>
+          <div id="cpu-container" style="width: 100%; height: 50%;"></div>
+          <div id="mem-container" style="width: 100%; height: 50%;"></div>
         </aside>
 
         <aside
@@ -210,6 +213,7 @@
         background-color: var(--pico-background-color);
       }
     </style>
+    <script src="build/echarts.min.js"></script>
     <script src="build/index.js"></script>
   </body>
 </html>
